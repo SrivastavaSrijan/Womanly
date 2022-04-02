@@ -1,0 +1,46 @@
+$theme-color: #e7bfad;
+$hero-color: #f7ede4;
+div#__next {
+  flex: 1;
+  /** Default overrides */
+  textarea {
+    resize: none;
+    height: 10rem;
+  }
+
+  div.image-container {
+    width: 100%;
+
+    > span {
+      position: unset !important;
+      box-sizing: unset !important;
+      display: unset !important;
+      width: unset !important;
+      height: unset !important;
+      background: unset !important;
+      opacity: unset !important;
+      border: unset !important;
+      margin: unset !important;
+      padding: unset !important;
+      max-width: unset !important;
+    }
+
+    img.image {
+      object-fit: contain;
+      width: 100% !important;
+      position: relative !important;
+      height: unset !important;
+    }
+  }
+}
+/** custom colors */
+$theme-colors: (
+  'info': tomato,
+  'danger': #42516d,
+  'primary': $theme-color,
+  'muted': $hero-color
+);
+
+$font-family-base: 'Open Sans', sans-serif;
+$headings-font-family: 'Tenor Sans', sans-serif;
+@import '~bootstrap/scss/bootstrap';
