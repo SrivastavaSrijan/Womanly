@@ -1,14 +1,13 @@
 import Link from 'next/dist/client/link';
 import React from 'react';
-import { Button, Col, Row, Stack, Card } from 'react-bootstrap';
+import { Button, Col, Row, Stack } from 'react-bootstrap';
 import CustomImage from '../components/CustomImage';
 
-interface HeroProps {
+interface IHero {
   prop1?: string;
-  prop2?: number;
 }
 
-const Hero: React.FC<HeroProps> = ({ prop1, prop2 }) => {
+function Hero({ prop1 }: IHero) {
   return (
     <Row className="justify-content-md-center bg-muted mx-0 pb-3">
       <Col lg={6}>
@@ -31,13 +30,13 @@ const Hero: React.FC<HeroProps> = ({ prop1, prop2 }) => {
         </Stack>
       </Col>
       <Col lg={5}>
-        <CustomImage
-          path="/images/hero-image.svg"
-          classNames="img-fluid"
-        ></CustomImage>
+        <CustomImage path="/images/hero-image.svg" classNames="img-fluid" />
       </Col>
     </Row>
   );
-};
+}
 
+Hero.defaultProps = {
+  prop1: '',
+};
 export default Hero;

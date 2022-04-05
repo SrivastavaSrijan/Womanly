@@ -10,6 +10,6 @@ export type Context = {
  */
 export async function createContext({ req, res }: any): Promise<Context> {
   return {
-    prisma
+    prisma,
   };
 }

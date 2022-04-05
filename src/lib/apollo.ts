@@ -6,7 +6,7 @@ const apolloClient = new ApolloClient({
       ? process.env.PROD_URL
       : process.env.DEV_URL
   }/api/graphql`,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
 
 export default apolloClient;

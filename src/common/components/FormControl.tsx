@@ -1,23 +1,21 @@
 import React from 'react';
 import { FloatingLabel, Form } from 'react-bootstrap';
 
-interface FormControlProps {
+interface IFormControl {
   label: string;
   placeholder: string;
   modifier: string;
   type?: string;
-  as: string;
   helpText?: string;
 }
 
-const FormControl: React.FC<FormControlProps> = ({
+function FormControl({
   label,
   placeholder,
   modifier,
-  type = 'text',
-  as = '',
-  helpText = null
-}) => {
+  type,
+  helpText,
+}: IFormControl) {
   return (
     <FloatingLabel label={label} controlId={modifier} className="mb-3">
       <Form.Control type={type} placeholder={placeholder} className="mb-1" />
@@ -28,6 +26,9 @@ const FormControl: React.FC<FormControlProps> = ({
       )}
     </FloatingLabel>
   );
+}
+FormControl.defaultProps = {
+  type: 'text',
+  helpText: '',
 };
-
 export default FormControl;

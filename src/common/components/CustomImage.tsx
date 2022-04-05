@@ -1,19 +1,15 @@
 import React from 'react';
 import Image from 'next/image';
 
-interface CustomImage {
+interface ICustomImage {
   path: string;
   classNames?: string;
   size?: number;
 }
 
-const CustomImage: React.FC<CustomImage> = ({
-  path,
-  classNames,
-  size = null
-}) => {
+function CustomImage({ path, classNames, size }: ICustomImage) {
   return (
-    <div className={'image-container'}>
+    <div className="image-container">
       <Image
         src={path}
         layout={size ? 'fixed' : 'fill'}
@@ -22,6 +18,10 @@ const CustomImage: React.FC<CustomImage> = ({
       />
     </div>
   );
-};
+}
 
+CustomImage.defaultProps = {
+  classNames: '',
+  size: undefined,
+};
 export default CustomImage;

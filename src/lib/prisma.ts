@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 
 /** Define and export Global Prisma Client Object */
+// eslint-disable-next-line import/no-mutable-exports
 let prisma: PrismaClient;
 const globalObject: any = global;
 

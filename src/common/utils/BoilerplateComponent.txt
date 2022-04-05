@@ -1,14 +1,16 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 
-interface BoilerplateComponent {
+interface IBoilerplateComponent {
   prop1?: string;
-  prop2?: string;
 }
 
-export const BoilerplateComponent: React.FC<BoilerplateComponent> = ({
-  prop1,
-  prop2
+const BoilerplateComponent: React.FC<IBoilerplateComponent> = ({
+  prop1
 }) => {
   return <Container fluid></Container>;
 };
+BoilerplateComponent.defaultProps = {
+  prop1: ''
+}
+export default BoilerplateComponent;

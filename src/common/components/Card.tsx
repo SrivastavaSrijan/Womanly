@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Card as BootstrapCard, Button } from 'react-bootstrap';
 import CustomImage from './CustomImage';
 
-interface Card {
+interface ICard {
   cardTitle: string;
   width?: string;
   imageSrc?: string;
@@ -12,24 +12,23 @@ interface Card {
   buttonText?: string;
 }
 
-export const Card: React.FC<Card> = ({
+function Card({
   cardTitle,
-  width = '18rem',
-  imageSrc = null,
-  cardText = `
-  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio repellat facilis sint explicabo vitae, eum veniam rerum iste molestiae sit nisi reprehenderit ullam odio expedita perferendis iusto quo ratione incidunt.`,
-  link = './',
-  buttonText = 'Check it out'
-}) => {
+  width,
+  imageSrc,
+  cardText,
+  link = '',
+  buttonText,
+}: ICard) {
   return (
-    <BootstrapCard style={{ width: width, maxHeight: '20rem' }}>
+    <BootstrapCard style={{ width, maxHeight: '20rem' }}>
       {imageSrc && <CustomImage path={imageSrc} size={300} />}
       <BootstrapCard.Body>
         <BootstrapCard.Title>{cardTitle}</BootstrapCard.Title>
         <BootstrapCard.Text className="text-truncate">
           {cardText}
         </BootstrapCard.Text>
-        <Link href={link}>
+        <Link href={link} passHref>
           <Button variant="secondary" className="btn-md">
             {buttonText}
           </Button>
@@ -37,4 +36,14 @@ export const Card: React.FC<Card> = ({
       </BootstrapCard.Body>
     </BootstrapCard>
   );
+}
+
+Card.defaultProps = {
+  width: '18rem',
+  imageSrc: '',
+  cardText: `
+  Lorem ipsum dolor, sit amet consectetur adipisicing elit Optio repellat facilis sint explicabo vitae, eum veniam rerum iste molestiae sit nisi reprehenderit ullam odio expedita perferendis iusto quo ratione incidunt`,
+  link: './',
+  buttonText: 'Check it out',
 };
+export default Card;

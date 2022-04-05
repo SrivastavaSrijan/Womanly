@@ -1,5 +1,11 @@
 import { enumType, objectType } from 'nexus';
 
+const Role = enumType({
+  name: 'Role',
+  members: ['USER', 'ADMIN'],
+});
+
+// eslint-disable-next-line import/prefer-default-export
 export const User = objectType({
   name: 'User',
   definition(t) {
@@ -8,10 +14,5 @@ export const User = objectType({
     t.string('email');
     t.string('image');
     t.field('role', { type: Role });
-  }
-});
-
-const Role = enumType({
-  name: 'Role',
-  members: ['USER', 'ADMIN']
+  },
 });

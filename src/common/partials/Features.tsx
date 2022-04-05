@@ -1,12 +1,13 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
+import { Post } from '@prisma/client';
 import cx from 'classnames';
 
 import { Container, Spinner, Stack } from 'react-bootstrap';
-import { Card } from '../components/Card';
-import { Post } from '@prisma/client';
+import Card from '../components/Card';
 
-interface Features {
+interface IFeatures {
   prop1?: string;
   prop2?: number;
 }
@@ -23,13 +24,13 @@ export const PostQueryExec = gql`
     }
   }
 `;
-const Features: React.FC<Features> = ({ prop1, prop2 }) => {
+function Features({ prop1, prop2 }: IFeatures) {
   const {
     data,
     loading: isLoading,
-    error
+    error,
   } = useQuery(PostQueryExec, {
-    variables: { isFeatured: true }
+    variables: { isFeatured: true },
   });
   return (
     <Container>
@@ -45,8 +46,10 @@ const Features: React.FC<Features> = ({ prop1, prop2 }) => {
           <Spinner animation="border" role="status">
             <span className="visually-hidden">Loading...</span>
           </Spinner>
+        ) : error ? (
+          <p>Failed to fetch</p>
         ) : (
-          ((data?.Posts ?? []) as Post[]).map(
+          ((data?.Posts as Post[]) ?? []).map(
             ({ title, desc, image, link, buttonText }) => (
               <Card
                 cardTitle={title}
@@ -61,6 +64,10 @@ const Features: React.FC<Features> = ({ prop1, prop2 }) => {
       </Stack>
     </Container>
   );
-};
+}
 
+Features.defaultProps = {
+  prop1: '',
+  prop2: -1,
+};
 export default Features;
