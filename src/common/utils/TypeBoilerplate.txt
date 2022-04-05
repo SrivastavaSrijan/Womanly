@@ -1,0 +1,21 @@
+import { objectType, extendType } from 'nexus';
+export const TypeBoilerplate = objectType({
+  name: 'TypeBoilerplate',
+  definition(t) {
+    t.string('id');
+    t.string('diseaseName');
+    t.list.string('symptomsList');
+  }
+});
+
+export const TypeBoilerplateQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.nonNull.list.field('TypeBoilerplate', {
+      type: 'TypeBoilerplate',
+      resolve(_parent, _args, ctx) {
+        return ctx.prisma.TypeBoilerplate.findMany();
+      }
+    });
+  }
+});

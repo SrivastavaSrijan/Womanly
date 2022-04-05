@@ -16,7 +16,7 @@ export const NavigationBar = () => {
                 size={56}
               />
 
-              <h6 className="text-danger mx-2 my-1">WOMANLY</h6>
+              <h6 className="text-black mx-2 my-1">WOMANLY</h6>
             </Stack>
           </Link>
         </Navbar.Brand>

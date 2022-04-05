@@ -1,7 +1,14 @@
 $theme-color: #e7bfad;
-$hero-color: #f7ede4;
+$hero-color: #ede8e5;
+$background-color: #fff;
+$secondary-color: #333;
+$success-color: #cbb7cb;
+$info-color: #b0bebf;
+$danger-color: #e89d76;
+$warning-color: #c05821;
 div#__next {
   flex: 1;
+  background-color: $background-color;
   /** Default overrides */
   textarea {
     resize: none;
@@ -35,12 +42,15 @@ div#__next {
 }
 /** custom colors */
 $theme-colors: (
-  'info': tomato,
-  'danger': #42516d,
   'primary': $theme-color,
-  'muted': $hero-color
+  'secondary': $secondary-color,
+  'success': $success-color,
+  'info': $info-color,
+  'danger': $danger-color,
+  'muted': $hero-color,
+  'warning': $warning-color
 );
-
+$enable-negative-margins: true;
 $font-family-base: 'Open Sans', sans-serif;
 $headings-font-family: 'Tenor Sans', sans-serif;
 @import '~bootstrap/scss/bootstrap';
