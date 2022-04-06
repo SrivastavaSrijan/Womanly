@@ -7,13 +7,6 @@ async function main() {
   const result = await prisma.symptomDiseaseAsset.findMany({
     select: { symptomsList: true },
   });
-  const { sortedUniq, concat, map, filter, startsWith, sortBy } = lodash;
-  const a = map(
-    sortedUniq(sortBy(concat(...map(result, 'symptomsList')))),
-    (val) => val.toLowerCase()
-  );
-  await prisma.symptomsList.create({ data: { payload: a } });
-  return prisma.symptomsList.findMany({ take: 100 });
 }
 
 main()
