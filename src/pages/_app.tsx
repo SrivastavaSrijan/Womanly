@@ -4,8 +4,8 @@ import { ApolloProvider } from '@apollo/client';
 
 import { ThemeProvider, Container, SSRProvider } from 'react-bootstrap';
 
-import { NavigationBar } from '../common/components/NavigationBar';
-import { Header } from '../common/components/Header';
+import NavigationBar from '../common/components/NavigationBar';
+import Header from '../common/components/Header';
 
 import apolloClient from '../lib/apollo';
 
@@ -15,10 +15,8 @@ function WomanlyApp({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={apolloClient}>
       <SSRProvider>
-        <Header desc="Welcome to womanly!" />
-        <ThemeProvider
-          breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
-        >
+        <Header title="Womanly" desc="Welcome to womanly!" />
+        <ThemeProvider breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}>
           <NavigationBar />
           <Container fluid className="p-0">
             <Component {...pageProps} />

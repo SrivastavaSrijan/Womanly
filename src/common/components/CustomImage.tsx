@@ -10,12 +10,7 @@ interface ICustomImage {
 function CustomImage({ path, classNames, size }: ICustomImage) {
   return (
     <div className="image-container">
-      <Image
-        src={path}
-        layout={size ? 'fixed' : 'fill'}
-        className={`image ${classNames}`}
-        {...(size && { width: size, height: size })}
-      />
+      <Image src={path} layout={size ? 'fixed' : 'fill'} className={`image ${classNames}`} {...(size && { width: size, height: size })} />
     </div>
   );
 }

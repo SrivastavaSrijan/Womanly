@@ -12,22 +12,13 @@ interface ICard {
   buttonText?: string;
 }
 
-function Card({
-  cardTitle,
-  width,
-  imageSrc,
-  cardText,
-  link = '',
-  buttonText,
-}: ICard) {
+function Card({ cardTitle, width, imageSrc, cardText, link = '', buttonText }: ICard) {
   return (
-    <BootstrapCard style={{ width, maxHeight: '20rem' }}>
+    <BootstrapCard style={{ width }}>
       {imageSrc && <CustomImage path={imageSrc} size={300} />}
       <BootstrapCard.Body>
         <BootstrapCard.Title>{cardTitle}</BootstrapCard.Title>
-        <BootstrapCard.Text className="text-truncate">
-          {cardText}
-        </BootstrapCard.Text>
+        <BootstrapCard.Text className="text-truncate">{cardText}</BootstrapCard.Text>
         <Link href={link} passHref>
           <Button variant="secondary" className="btn-md">
             {buttonText}

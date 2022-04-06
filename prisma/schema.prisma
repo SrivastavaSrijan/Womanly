@@ -42,3 +42,10 @@ model Post {
 
   @@map("Posts")
 }
+
+model List {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  payload String[]
+
+  @@map("Lists")
+}

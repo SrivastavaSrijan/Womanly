@@ -2,6 +2,11 @@
 ### Do not make changes to this file directly
 
 
+type List {
+  id: String
+  payload: [String]!
+}
+
 type Post {
   buttonText: String
   desc: String
@@ -15,6 +20,7 @@ type Post {
 type Query {
   Posts(isFeatured: Boolean): [Post]!
   SymptomDiseaseLinkers: [SymptomDiseaseAsset]!
+  SymptomTypeahead(searchString: String!): List
 }
 
 enum Role {

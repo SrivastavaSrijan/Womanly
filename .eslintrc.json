@@ -1,8 +1,6 @@
 {
-  "extends": ["next/core-web-vitals", "prettier", "airbnb"],
-  "plugins": ["prettier"],
+  "extends": ["next/core-web-vitals", "airbnb"],
   "rules": {
-    "prettier/prettier": "error",
     "linebreak-style": "off",
     "import/extensions": "off",
     "react/jsx-filename-extension": [
@@ -19,16 +17,7 @@
         "ExportDeclaration": { "multiline": true, "minProperties": 3 }
       }
     ],
-    "no-unused-vars": "off",
-    "comma-dangle": [
-      "error",
-      {
-        "arrays": "always-multiline",
-        "objects": "always-multiline",
-        "imports": "always-multiline",
-        "exports": "always-multiline",
-        "functions": "never"
-      }
-    ]
+    "no-unused-vars": "off"
+   
   }
 }
