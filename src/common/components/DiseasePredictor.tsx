@@ -1,8 +1,8 @@
 import { useLazyQuery } from '@apollo/client';
 import { gql } from 'apollo-server-micro';
-import { uniqueId } from 'lodash';
+import { uniqueId, orderBy, curry } from 'lodash';
 import React, { useEffect, useState } from 'react';
-import { Container, Stack, Spinner, Accordion, Toast } from 'react-bootstrap';
+import { Stack, Spinner, Accordion, Toast } from 'react-bootstrap';
 import cx from 'classnames';
 
 import Disease from './Disease';
@@ -38,17 +38,23 @@ function DiseasePredictor({
     let listToRender = [];
     if (isCalled && !isFetching && !error && data) {
       const listFetched = (data?.SymptomDiseaseFinder as IDiseaseList[]) ?? [];
-      if (listFetched.length === 0) {
+      const { length } = listFetched;
+      if (length === 0 || length >= 25) {
         setList(
           <Toast className="w-100">
             <Toast.Header>
               <strong className="me-auto">Try again?</strong>
             </Toast.Header>
-            <Toast.Body>No diseases matching your symptoms found.</Toast.Body>
+            <Toast.Body>
+              {length === 0
+                ? 'No diseases matching your symptoms found.'
+                : 'Too many results! Try adding more symptoms.'}
+            </Toast.Body>
           </Toast>,
         );
       } else {
-        listToRender = listFetched
+        const orderedList = orderBy(listFetched, [({ diseaseName }) => diseaseName.toLowerCase()], ['asc']);
+        listToRender = orderedList
           .map(({ diseaseName }, index) => (
             <Disease
               key={uniqueId('disease_')}
@@ -57,7 +63,7 @@ function DiseasePredictor({
             />
           ));
         const finalAccordion = (
-          <Accordion defaultActiveKey="0" className="d-flex vh-25 flex-column overflow-auto" style={{ height: '25vh' }}>
+          <Accordion className="d-flex vh-25 flex-column overflow-auto" style={{ height: '50vh' }}>
             {listToRender}
           </Accordion>
         );

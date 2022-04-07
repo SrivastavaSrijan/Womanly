@@ -5,6 +5,14 @@
     }
   ],
   "settings": {
-    "cSpell.words": ["typegen"]
+    "cSpell.words": [
+      "exintro",
+      "exlimit",
+      "exsentences",
+      "formatversion",
+      "fromencoded",
+      "pageid",
+      "typegen"
+    ]
   }
 }
