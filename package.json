@@ -29,8 +29,10 @@
     "react": "18.0.0",
     "react-bootstrap": "^2.2.2",
     "react-bootstrap-formik": "^1.7.2",
+    "react-bootstrap-typeahead": "^6.0.0-alpha.11",
     "react-dom": "18.0.0",
     "react-ga4": "^1.4.1",
+    "use-constant": "^1.1.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {

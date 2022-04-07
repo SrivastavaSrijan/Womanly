@@ -15,7 +15,10 @@ function Hero({ prop1 }: IHero) {
           <h2 className="display-6">Skip the judgement.</h2>
           <h1 className="display-3 mt-n1 lh-1">Welcome to Womanly!</h1>
           <Stack className="px-3 mt-3">
-            <p>Full-stack healthcare platform for women &mdash; track your periods, use your symptom checker, and save your vitals.</p>
+            <p>
+              Full-stack healthcare platform for women &mdash;
+              track your periods, use your symptom checker, and save your vitals.
+            </p>
             <Stack gap={4} className="w-75">
               <Link href="auth-user">
                 <Button variant="primary" className="btn-md">

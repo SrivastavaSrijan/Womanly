@@ -30,7 +30,7 @@ function Card({ cardTitle, width, imageSrc, cardText, link = '', buttonText }: I
 }
 
 Card.defaultProps = {
-  width: '18rem',
+  width: '300px',
   imageSrc: '',
   cardText: `
   Lorem ipsum dolor, sit amet consectetur adipisicing elit Optio repellat facilis sint explicabo vitae, eum veniam rerum iste molestiae sit nisi reprehenderit ullam odio expedita perferendis iusto quo ratione incidunt`,

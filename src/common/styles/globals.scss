@@ -6,6 +6,7 @@ $success-color: #cbb7cb;
 $info-color: #b0bebf;
 $danger-color: #e89d76;
 $warning-color: #c05821;
+
 div#__next {
   flex: 1;
   background-color: $background-color;
@@ -39,7 +40,13 @@ div#__next {
       height: unset !important;
     }
   }
+
+  div.rbt-token-label, a.dropdown-item  {
+    text-transform: capitalize;
+  }
+
 }
+// React Bootstrap overrides
 /** custom colors */
 $theme-colors: (
   'primary': $theme-color,
@@ -50,7 +57,54 @@ $theme-colors: (
   'muted': $hero-color,
   'warning': $warning-color
 );
+
+$dropdown-link-active-bg: $theme-color;
+$dropdown-padding-y: 0;
+// React Bootstrap Typeahead overrides
+$rbt-color-primary: $secondary-color;
+$rbt-color-disabled: $danger-color;
+$rbt-color-white: $hero-color;
+$rbt-background-color-disabled: #e9ecef;
+$rbt-token-active-background-color: $danger-color;
+$rbt-border-color-focus: $theme-color;
+$rbt-border-color-focus-valid: $success-color;
+$rbt-border-color-focus-invalid: $danger-color;
+
+$rbt-box-shadow-dimensions: 0 0 0 0.2rem;
+$rbt-box-shadow-color: transparentize($theme-color, 0.75) ;
+$rbt-box-shadow-color-invalid: transparentize($danger-color, 0.75);
+$rbt-box-shadow-color-valid: transparentize($success-color, 0.75);
+$rbt-token-background-color: $hero-color;
+
 $enable-negative-margins: true;
+$enable-shadows: true;
 $font-family-base: 'Open Sans', sans-serif;
 $headings-font-family: 'Tenor Sans', sans-serif;
 @import '~bootstrap/scss/bootstrap';
+@import '~react-bootstrap-typeahead/css/Typeahead.scss';
+
+$utilities: map-merge(
+  $utilities, 
+  (
+    "border": map-merge(
+      map-get($utilities, "border"),
+      ( responsive: true ),
+    ),
+    "border-top": map-merge(
+      map-get($utilities, "border-top"),
+      ( responsive: true ),
+    ),
+    "border-end": map-merge(
+      map-get($utilities, "border-end"),
+      ( responsive: true ),
+    ),
+    "border-bottom": map-merge(
+      map-get($utilities, "border-bottom"),
+      ( responsive: true ),
+    ),
+    "border-start": map-merge(
+      map-get($utilities, "border-start"),
+      ( responsive: true ),
+    ),
+  )
+);
