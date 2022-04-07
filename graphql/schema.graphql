@@ -19,6 +19,7 @@ type Post {
 
 type Query {
   Posts(isFeatured: Boolean): [Post]!
+  SymptomDiseaseFinder(findPrecise: Boolean = false, symptomList: [String]!): [SymptomDiseaseAsset]!
   SymptomDiseaseLinkers: [SymptomDiseaseAsset]!
   SymptomTypeahead(searchString: String!): List
 }

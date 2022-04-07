@@ -1,16 +1,24 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Stack } from 'react-bootstrap';
 
-interface IBoilerplateComponent {
-  prop1?: string;
+interface IDiseasePredictor {
+  diseaseList?: string[];
 }
 
-const BoilerplateComponent: React.FC<IBoilerplateComponent> = ({
-  prop1
-}) => {
-  return <Container fluid></Container>;
+function DiseasePredictor({
+  diseaseList,
+}: IDiseasePredictor) {
+  return (
+    <Container fluid>
+      <Stack>
+        Your diseases are:
+        {' '}
+        {diseaseList}
+      </Stack>
+    </Container>
+  );
+}
+DiseasePredictor.defaultProps = {
+  diseaseList: '',
 };
-BoilerplateComponent.defaultProps = {
-  prop1: ''
-}
-export default BoilerplateComponent;
+export default DiseasePredictor;

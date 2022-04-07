@@ -1,19 +1,17 @@
-/* eslint-disable react/function-component-definition */
 import React, { useEffect, useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
 import { gql } from 'apollo-server-micro';
-import { map, uniqueId } from 'lodash';
+import { map, uniqueId, capitalize } from 'lodash';
 import { List } from '@prisma/client';
 import { NextPage } from 'next';
 import { Button, Stack, Form } from 'react-bootstrap';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
+import { IList } from '../types/types';
 
 interface ISymptomTypeahead {
   handleSubmit: (payload: string[]) => void;
-}
-interface ISuggestionList {
-  label: string;
-  id: string;
+  predictDisease: React.Dispatch<React.SetStateAction<boolean>>;
+  showingDisease: boolean;
 }
 
 export const SYMPTOM_TYPEAHEAD = gql`
@@ -24,11 +22,14 @@ export const SYMPTOM_TYPEAHEAD = gql`
   }
 `;
 
-const SymptomTypeahead: NextPage<ISymptomTypeahead> = ({ handleSubmit }: ISymptomTypeahead) => {
-  const [invokeSearch,
-    { called: isCalled, loading: hasFetched, error, data }] = useLazyQuery(SYMPTOM_TYPEAHEAD);
+function SymptomTypeahead({
+  handleSubmit, predictDisease, showingDisease,
+}: ISymptomTypeahead) {
+  const [invokeSearch, {
+    called: isCalled, loading: isFetching, error, data,
+  }] = useLazyQuery(SYMPTOM_TYPEAHEAD);
 
-  const [list, setList] = useState([] as ISuggestionList[]);
+  const [list, setList] = useState([] as IList[]);
 
   const [isLoading, setLoading] = useState(false);
 
@@ -39,24 +40,32 @@ const SymptomTypeahead: NextPage<ISymptomTypeahead> = ({ handleSubmit }: ISympto
     },
   );
 
-  const handleInputChange = (query: string) => (query === '' || query.length < 3
-    ? setList([]) : false);
+  const handleInputChange = (query: string) => {
+    if (query.length < 2 && list.length !== 0) {
+      setList([]);
+    }
+  };
 
-  const handleChange = ((selected: any[]) => handleSubmit(map(selected, 'label')));
+  const handleChange = ((selected: any[]) => {
+    handleSubmit(selected
+      .flatMap(({ label }) => capitalize(label)));
+    setList([]);
+    if (selected.length === 0) {
+      predictDisease(false);
+    }
+  });
 
   useEffect(() => {
-    let listToRender: ISuggestionList[] = [];
-    if (isCalled && !hasFetched && !error && data) {
+    let listToRender: IList[] = [];
+    if (isCalled && !isFetching && !error && data) {
       const listFetched = (data?.SymptomTypeahead as List)?.payload ?? [];
       listToRender = listFetched
         .map((suggestions) => ({ label: suggestions, id: uniqueId('suggestion_') }));
       setList(listToRender);
       setLoading(false);
-    } else if (isCalled && isLoading) {
-      setLoading(true);
-      setList([]);
     }
-  }, [isLoading, error, isCalled, data, hasFetched]);
+    setLoading(isFetching && isCalled);
+  }, [isLoading, error, isCalled, data, isFetching]);
 
   return (
 
@@ -70,7 +79,7 @@ const SymptomTypeahead: NextPage<ISymptomTypeahead> = ({ handleSubmit }: ISympto
           filterBy={filterBy}
           id="async-filtering"
           isLoading={isLoading}
-          minLength={3}
+          minLength={2}
           onSearch={handleSearch}
           onInputChange={handleInputChange}
           onChange={handleChange}
@@ -85,12 +94,12 @@ const SymptomTypeahead: NextPage<ISymptomTypeahead> = ({ handleSubmit }: ISympto
           Min 3 characters, press enter to select
         </Form.Text>
       </Stack>
-      <Button type="submit" className="mt-3 w-100">
+      <Button type="submit" className="mt-3 w-100" onClick={() => predictDisease(!showingDisease)}>
         Continue
       </Button>
     </Form.Group>
 
   );
-};
+}
 
 export default SymptomTypeahead;

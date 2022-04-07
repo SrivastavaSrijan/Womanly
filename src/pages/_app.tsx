@@ -16,7 +16,7 @@ function WomanlyApp({ Component, pageProps }: AppProps) {
     <ApolloProvider client={apolloClient}>
       <SSRProvider>
         <Header title="Womanly" desc="Welcome to womanly!" />
-        <ThemeProvider breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}>
+        <ThemeProvider breakpoints={['xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}>
           <NavigationBar />
           <Container fluid className="p-0">
             <Component {...pageProps} />

@@ -16,11 +16,11 @@ function Card({ cardTitle, width, imageSrc, cardText, link = '', buttonText }: I
   return (
     <BootstrapCard style={{ width }}>
       {imageSrc && <CustomImage path={imageSrc} size={300} />}
-      <BootstrapCard.Body>
+      <BootstrapCard.Body className="bg-muted">
         <BootstrapCard.Title>{cardTitle}</BootstrapCard.Title>
         <BootstrapCard.Text className="text-truncate">{cardText}</BootstrapCard.Text>
         <Link href={link} passHref>
-          <Button variant="secondary" className="btn-md">
+          <Button variant="primary" className="btn-md">
             {buttonText}
           </Button>
         </Link>

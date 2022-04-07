@@ -41,7 +41,7 @@ div#__next {
     }
   }
 
-  div.rbt-token-label, a.dropdown-item  {
+  div.rbt-token-label, a.dropdown-item mark  {
     text-transform: capitalize;
   }
 
@@ -58,8 +58,14 @@ $theme-colors: (
   'warning': $warning-color
 );
 
+
 $dropdown-link-active-bg: $theme-color;
 $dropdown-padding-y: 0;
+
+$accordion-button-color: $secondary-color;
+$accordion-button-active-color: $danger-color;
+$accordion-button-bg: $background-color;
+$component-active-bg: transparentize($theme-color, 0.75);
 // React Bootstrap Typeahead overrides
 $rbt-color-primary: $secondary-color;
 $rbt-color-disabled: $danger-color;
@@ -71,7 +77,7 @@ $rbt-border-color-focus-valid: $success-color;
 $rbt-border-color-focus-invalid: $danger-color;
 
 $rbt-box-shadow-dimensions: 0 0 0 0.2rem;
-$rbt-box-shadow-color: transparentize($theme-color, 0.75) ;
+$rbt-box-shadow-color: $component-active-bg;
 $rbt-box-shadow-color-invalid: transparentize($danger-color, 0.75);
 $rbt-box-shadow-color-valid: transparentize($success-color, 0.75);
 $rbt-token-background-color: $hero-color;
@@ -80,6 +86,15 @@ $enable-negative-margins: true;
 $enable-shadows: true;
 $font-family-base: 'Open Sans', sans-serif;
 $headings-font-family: 'Tenor Sans', sans-serif;
+$grid-breakpoints: (
+  'xxs': 0,
+  'xs': 340px,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+  'xxl': 1400px,
+);
 @import '~bootstrap/scss/bootstrap';
 @import '~react-bootstrap-typeahead/css/Typeahead.scss';
 
@@ -108,3 +123,4 @@ $utilities: map-merge(
     ),
   )
 );
+
