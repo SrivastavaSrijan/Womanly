@@ -1,5 +1,5 @@
 import React, { MouseEvent, useState } from 'react';
-import { CurriedFunction1, find } from 'lodash';
+import { find } from 'lodash';
 import { Accordion, Spinner } from 'react-bootstrap';
 
 import { IWikipedia } from '../types/types';
@@ -57,7 +57,7 @@ function Disease({
       <Accordion.Header onClick={handleClick}>{diseaseName}</Accordion.Header>
       <Accordion.Body>
         {isLoading ? (
-          <Spinner animation="border" role="status">
+          <Spinner animation="border" role="status" className="position-relative start-50">
             <span className="visually-hidden">Loading...</span>
           </Spinner>
         ) : (

@@ -23,11 +23,17 @@ model SymptomDiseaseAsset {
 
 model User {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  role      Role     @default(USER)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  email     String?  @unique
+  email     String  @unique
   image     String?
-  role      Role     @default(USER)
+  firstName String?
+  lastName  String?
+  age       String?
+  address   String?
+  state     String?
+  sex       String?
   @@map("User_List")
 }
 

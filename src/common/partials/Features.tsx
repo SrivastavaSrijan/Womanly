@@ -40,9 +40,12 @@ function Features({ prop1, prop2 }: IFeatures) {
       const cardsFetched = (data?.Posts as Post[]) ?? [];
       const cardsToRender = cardsFetched
         .map(({ title, desc, image, link, buttonText }) => (
-          <Col className="m-2" lg={3}>
+          <Col
+            className="m-2"
+            lg={3}
+            key={uniqueId('feature_card_')}
+          >
             <Card
-              key={uniqueId('feature_card_')}
               cardTitle={title}
               width="100%"
               imageSrc={image}
@@ -55,20 +58,25 @@ function Features({ prop1, prop2 }: IFeatures) {
       setFeatureCards(cardsToRender);
     } else if (isLoading) {
       const loadingJSX = (
-        <Spinner animation="border" role="status">
+        <Spinner
+          animation="border"
+          role="status"
+          className="position-relative start-50"
+          key={uniqueId('loader_')}
+        >
           <span className="visually-hidden">Loading...</span>
         </Spinner>
       );
       setFeatureCards([loadingJSX]);
     } else {
-      setFeatureCards([<p>Failed to fetch</p>]);
+      setFeatureCards([<p key={uniqueId('failure_')}>Failed to fetch</p>]);
     }
   }, [isLoading, error, data]);
 
   return (
-    <Container className="px-lg-5">
+    <Container className="mt-3 px-lg-0 px-xs-4" fluid="md">
       <Stack gap={1} className="mt-3">
-        <h2 className="display-5">Our Offerings</h2>
+        <h2 className="display-3">Our Offerings</h2>
       </Stack>
       <Row className={cx([isLoading && 'justify-content-center w-100', 'my-4', 'justify-content-lg-start', 'justify-content-center'])} direction="horizontal">
         {featureCards}
